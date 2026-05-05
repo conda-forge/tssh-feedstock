@@ -1,9 +1,8 @@
 context:
-  name: tssh
   version: "0.1.25"
 
 package:
-  name: ${{ name }}
+  name: tssh
   version: ${{ version }}
 
 source:
@@ -11,12 +10,12 @@ source:
   sha256: 9a692854733333643b6108f68bed0239b266c461e15125781503d957c9b47842
 
 build:
-  number: 0
+  number: 1
   script:
-    - go-licenses save ./cmd/${{ name }} --save_path ./library_licenses
+    - go-licenses save ./cmd/tssh --save_path ./library_licenses
     - if: unix
-      then: go build -v -trimpath -o $PREFIX/bin/${{ name }} -ldflags="-s -w" ./cmd/${{ name }}
-      else: go build -v -trimpath -o %LIBRARY_BIN%\${{ name }}.exe -ldflags="-s -w" .\cmd\${{ name }}
+      then: go build -v -trimpath -o $PREFIX/bin/tssh -ldflags="-s -w" ./cmd/tssh
+      else: go build -v -trimpath -o %LIBRARY_BIN%\tssh.exe -ldflags="-s -w" .\cmd\tssh
 
 requirements:
   build:
@@ -25,7 +24,11 @@ requirements:
 
 tests:
   - script:
-      - ${{ name }} -V
+      - tssh -V
+  - package_contents:
+      bin:
+        - tssh
+      strict: true
 
 about:
   homepage: https://trzsz.github.io/tssh
