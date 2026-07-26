@@ -1,5 +1,5 @@
 context:
-  version: "0.1.25"
+  version: "0.1.26"
 
 package:
   name: tssh
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/trzsz/trzsz-ssh/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 9a692854733333643b6108f68bed0239b266c461e15125781503d957c9b47842
+  sha256: 67c9082543e1785ece3f5ab09f6299cd655e3657593d55cc85751c097c1bb381
 
 build:
-  number: 1
+  number: 0
   script:
     - go-licenses save ./cmd/tssh --save_path ./library_licenses
     - if: unix
