@@ -20,8 +20,6 @@ build:
 requirements:
   build:
     - "{% if target_platform == 'win-arm64' %} go {% else %} ${{ compiler('go-nocgo') }} {% endif %}"
-    - if: osx
-      then: ${{ stdlib('c') }}
     - go-licenses
 
 tests:
